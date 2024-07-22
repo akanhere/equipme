@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<v:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   x:Class="EquipMe.Views.HomeView"
+                   xmlns:v="clr-namespace:EquipMe.Views"
+                   
+                   >
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to Equip-Me"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Move" Command="{Binding MoveCommand}" WidthRequest="150" />
+    </VerticalStackLayout>
+</v:ContentPageBase>

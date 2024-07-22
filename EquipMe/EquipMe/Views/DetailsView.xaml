@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<v:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EquipMe.Views.DetailsView"
+             xmlns:v="clr-namespace:EquipMe.Views"
+             >
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to Details"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Show Dialog" Command="{Binding ShowDialogCommand}"/>
+    </VerticalStackLayout>
+</v:ContentPageBase>
+

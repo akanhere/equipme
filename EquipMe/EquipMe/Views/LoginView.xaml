@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="EquipMe.Views.LoginView"
+             Title="Login">
+    <Grid Padding="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Text="Inspection Rounds"
+               FontFamily="FontAwesome_Regular"
+               FontSize="25" 
+               HorizontalOptions="CenterAndExpand"
+               Margin="0,15"/>
+        <StackLayout Grid.Row="1" 
+                     Spacing="30">
+            <Entry Placeholder="Username" 
+                   Text="{Binding Username}" 
+                   Keyboard="Email" />
+            <Entry Placeholder="Password" 
+                   Text="{Binding Password}" 
+                   IsPassword="True" />
+            <Button Text="Login" 
+                    Command="{Binding LoginCommand}" 
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
+                    FontSize="12"
+                    FontFamily="FontAwesome_Solid"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                    CornerRadius="15" />
+            <Button Text="Forgot Password?" 
+                    Command="{Binding ForgotPasswordCommand}" 
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
+                    FontSize="12"
+                    FontFamily="FontAwesome_Solid"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                    CornerRadius="15" />
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="CenterAndExpand" 
+                         Spacing="20">
+                <Button Text="Google" 
+                        Command="{Binding GoogleLoginCommand}" 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
+                        CornerRadius="20" />
+                <Button Text="Microsoft" 
+                        Command="{Binding MicrosoftLoginCommand}" 
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
+                        CornerRadius="20" />
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>

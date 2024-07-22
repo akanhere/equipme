@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<v:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EquipMe.Views.RoundDetailsView"
+             xmlns:v="clr-namespace:EquipMe.Views"
+             xmlns:local="clr-namespace:EquipMe.TemplateSelectors"
+             Title="RoundDetailsView">
+     <v:ContentPageBase.Resources>
+        <ResourceDictionary>
+            <local:ParameterTemplateSelector x:Key="ParameterTemplateSelector">
+                <local:ParameterTemplateSelector.NumericTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5" Margin="10,0,0,0">
+                            <Label Text="{Binding Name}" FontSize="12"/>
+                            <Entry Text="{Binding Value}" Keyboard="Numeric" FontSize="12"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </local:ParameterTemplateSelector.NumericTemplate>
+                <local:ParameterTemplateSelector.DropdownTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5" Margin="10,0,0,0">
+                            <Label Text="{Binding Name}" FontSize="12"/>
+                            <Picker ItemsSource="{Binding Value}" FontSize="12"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </local:ParameterTemplateSelector.DropdownTemplate>
+                <local:ParameterTemplateSelector.MultipleSelectionTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5" Margin="10,0,0,0">
+                            <Label Text="{Binding Name}" FontSize="12"/>
+                            <CollectionView ItemsSource="{Binding Value}" SelectionMode="Multiple" Margin="5">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                           <Grid ColumnDefinitions="Auto, *">
+                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}"/>
+                                            <Label Grid.Column="1" Text="{Binding}" FontSize="12" VerticalTextAlignment="Center"/>
+                                           </Grid>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </DataTemplate>
+                </local:ParameterTemplateSelector.MultipleSelectionTemplate>
+                <local:ParameterTemplateSelector.DateTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="5" Margin="10,0,0,0">
+                            <Label Text="{Binding Name}" FontSize="12"/>
+                            <DatePicker Date="{Binding Value, Converter={StaticResource StringToDateTimeConverter}}" FontSize="12"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </local:ParameterTemplateSelector.DateTemplate>
+            </local:ParameterTemplateSelector>
+        </ResourceDictionary>
+    </v:ContentPageBase.Resources>
+    <Grid>
+    <ScrollView>
+       
+
+    <CollectionView ItemsSource="{Binding Equipments}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Margin="5">
+                            <Frame CornerRadius="20">
+                                <Grid RowDefinitions="Auto,Auto">
+                    <Label Grid.Row="0" FontFamily="FontAwesome_Solid" Text="{Binding Name}" FontSize="14" TextColor="Black" Margin="0,5,0,0" FontAttributes="Bold"/>
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding Parameters}" Margin="0,9,0,0"
+                                    ItemTemplate="{StaticResource ParameterTemplateSelector}"/>
+                                    </Grid>
+                                </Frame>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+    </ScrollView>
+    </Grid>
+</v:ContentPageBase>

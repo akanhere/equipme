@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<v:ContentPageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EquipMe.Views.RoundsView"
+             xmlns:v="clr-namespace:EquipMe.Views"
+             >
+    <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, *">
+
+        <Grid Grid.Row="0"
+                ColumnDefinitions="Auto, *"
+                ColumnSpacing="15"
+                IsVisible="False" 
+                Padding="25, 15"
+                RowDefinitions="Auto, Auto"
+                RowSpacing="0">
+            <Label
+                Grid.Column="0"
+                Grid.RowSpan="2"
+                HorizontalOptions="Center"
+                Text="&#xf12a;"
+                TextColor="Red"
+                VerticalOptions="Center"/>
+            <Label
+                Grid.Column="1"
+                Grid.Row="0"
+                Text="No Internet Connection"
+                TextColor="Red"/>
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="It looks like you do not have internet connection"/>
+        </Grid>
+
+        <Grid Grid.Row="1"
+                ColumnDefinitions="Auto, *, Auto"
+                RowDefinitions="Auto, Auto"
+                RowSpacing="0"
+                Margin="10, 10, 10, 0">
+            <Label
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Text="&#xf2bd;"
+                FontFamily="FontAwesome_Solid"
+                FontSize="40"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Margin="5, 0, 5, 0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ProfileCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                Grid.Column="1"
+                Grid.Row="0"
+                FontSize="15"   
+                Text="Hello"/>
+            <Label
+                Grid.Column="1"
+                Grid.Row="1"
+                Margin="0, -2, 0, 0"
+                FontSize="20"
+                FontAttributes="Bold"
+                Text="Ramnarayana Vasudevan Krishnan V."
+                LineBreakMode="TailTruncation"
+                
+                />
+            <Label
+                Grid.Column="2"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Text="&#xf142;"
+                FontSize="15"
+                FontFamily="FontAwesome_Solid"
+                VerticalOptions="Center"
+                Margin="0, 0, 10, 0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding MoreCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+
+        <Grid
+            Grid.Row="2"
+            Margin="15,5"
+            HeightRequest="35"
+            ColumnDefinitions="Auto, *, 35, 35">
+            <Label
+                Grid.Column="0"
+                Text="{Binding Week.WeekString}"
+                FontSize="12"
+                FontFamily="Mulish_Black"
+                VerticalOptions="Center"></Label>
+            <Button
+                    Grid.Column="2"
+                    CornerRadius="15"
+                    Text="&#xf053;"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
+                    FontSize="12"
+                    FontFamily="FontAwesome_Solid"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                    Command="{Binding PreviousWeekCommand}"
+                    CommandParameter="{Binding Week.StartDay}"></Button>
+                <Button
+                    Grid.Column="3"
+                    CornerRadius="15"
+                    Text="&#xf054;"
+                    TextColor="{AppThemeBinding Light={StaticResource LightButtonTextColor}, Dark={StaticResource DarkButtonTextColor}}"
+                    FontSize="12"
+                    FontFamily="FontAwesome_Solid"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LightButtonColor}, Dark={StaticResource DarkButtonColor}}"
+                    Command="{Binding NextWeekCommand}"
+                    CommandParameter="{Binding Week.LastDay}"></Button>
+        </Grid>
+
+
+        <Grid
+            x:Name="daysList"
+            Grid.Row="3"
+            ColumnDefinitions="*, *, *, *, *, *"
+            BindableLayout.ItemsSource="{Binding DaysList}"
+            Margin="15, 0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Grid.Column="{Binding Column}"
+                        Padding="4, 8, 4, 8"
+                        Margin="2"
+                        CornerRadius="16">
+                        <StackLayout
+                            Spacing="0">
+                            <Label
+                                Text="{Binding DayName}"
+                                TextTransform="Uppercase"
+                                FontFamily="Mulish_Regular"
+                                FontSize="10"
+                                HorizontalTextAlignment="Center">
+                            </Label>
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                FontFamily="Mulish-Bold"
+                                FontSize="12"
+                                Text="{Binding Day}">
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </Grid>
+
+        <ScrollView Grid.Row="4">
+        <CollectionView ItemsSource="{Binding Rounds}" Margin="10"
+                        SelectedItem="{Binding SelectedRound}" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame Margin="5"
+                            CornerRadius="20">
+                            <Grid Margin="10" >
+                                <Label Text="{Binding Name}" FontSize="15"
+                                       FontFamily="Mulish_Medium"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="Center"
+                                                    />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+    </Grid> 
+   
+    
+</v:ContentPageBase>
